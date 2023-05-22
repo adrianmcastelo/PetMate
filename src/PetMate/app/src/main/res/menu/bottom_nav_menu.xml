@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_map"
+        android:icon="@drawable/baseline_map_24"
+        android:title="@string/title_map" />
+
+    <item
+        android:id="@+id/navigation_animals"
+        android:icon="@drawable/baseline_pets_24"
+        android:title="@string/title_animals" />
+
+    <item
+        android:id="@+id/navigation_favs"
+        android:icon="@drawable/baseline_favorite_border_24"
+        android:title="@string/title_favs" />
+
+</menu>
