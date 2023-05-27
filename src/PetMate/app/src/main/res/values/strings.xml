@@ -3,4 +3,7 @@
     <string name="title_map">Mapa</string>
     <string name="title_animals">Animales</string>
     <string name="title_favs">Favoritos</string>
+    <string name="animal_image">Animal Image</string>
+    <string name="animal_name">Animal Name</string>
+    <string name="animal_age">Animal Age</string>
 </resources>
