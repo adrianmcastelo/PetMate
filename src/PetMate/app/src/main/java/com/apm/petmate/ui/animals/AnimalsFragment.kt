@@ -1,5 +1,6 @@
 package com.apm.petmate.ui.animals
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,15 +9,17 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.apm.petmate.ANIMAL_ID_EXTRA
 import com.apm.petmate.AgeEnum
 import com.apm.petmate.Animal
+import com.apm.petmate.DetailActivity
 import com.apm.petmate.R
 import com.apm.petmate.TypeEnum
 import com.apm.petmate.animalList
 import com.apm.petmate.databinding.ActivityMainBinding
 import com.apm.petmate.databinding.FragmentAnimalsBinding
 
-class AnimalsFragment : Fragment() {
+class AnimalsFragment : Fragment(), AnimalClickListener {
 
     private var _binding: FragmentAnimalsBinding? = null
 
@@ -37,9 +40,10 @@ class AnimalsFragment : Fragment() {
 
         val root: View = binding.root
 
+        val animalFragment = this
         binding.recyclerView.apply {
             layoutManager = GridLayoutManager(context, 2)
-            adapter = CardAdapter(animalList)
+            adapter = CardAdapter(animalList, animalFragment)
         }
 
         return root
@@ -48,6 +52,12 @@ class AnimalsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onClick(animal: Animal) {
+        val intent = Intent(context, DetailActivity::class.java)
+        intent.putExtra(ANIMAL_ID_EXTRA, animal.id)
+        startActivity(intent)
     }
 
     fun poblateAnimals() {
