@@ -1,4 +1,4 @@
-package com.apm.petmate
+package com.apm.petmate.ui.animals
 
 var animalList = mutableListOf<Animal>()
 

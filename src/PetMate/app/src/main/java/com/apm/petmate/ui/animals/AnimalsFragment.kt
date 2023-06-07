@@ -5,18 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import com.apm.petmate.ANIMAL_ID_EXTRA
-import com.apm.petmate.AgeEnum
-import com.apm.petmate.Animal
-import com.apm.petmate.DetailActivity
 import com.apm.petmate.R
-import com.apm.petmate.TypeEnum
-import com.apm.petmate.animalList
-import com.apm.petmate.databinding.ActivityMainBinding
 import com.apm.petmate.databinding.FragmentAnimalsBinding
 
 class AnimalsFragment : Fragment(), AnimalClickListener {
@@ -63,14 +54,14 @@ class AnimalsFragment : Fragment(), AnimalClickListener {
     fun poblateAnimals() {
         val animal1 = Animal(
             "Ejemplo1",
-            AgeEnum.ADULT,
-            TypeEnum.CAT,
+            AgeEnum.Adulto,
+            TypeEnum.Gato,
             R.drawable.cat
         )
         val animal2 = Animal(
             "Ejemplo2",
-            AgeEnum.YOUNG,
-            TypeEnum.DOG,
+            AgeEnum.Joven,
+            TypeEnum.Perro,
             R.drawable.dalmata
         )
 

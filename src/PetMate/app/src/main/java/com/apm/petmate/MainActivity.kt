@@ -1,5 +1,6 @@
 package com.apm.petmate
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +9,9 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.apm.petmate.databinding.ActivityMainBinding
+import com.apm.petmate.ui.animals.ANIMAL_ID_EXTRA
+import com.apm.petmate.ui.animals.CreateAnimalActivity
+import com.apm.petmate.ui.animals.DetailActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,6 +22,11 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.floatingActionButton.setOnClickListener {
+            val intent = Intent(this, CreateAnimalActivity::class.java).apply {  }
+            startActivity(intent)
+        }
 
         val navView: BottomNavigationView = binding.navView
 

@@ -6,16 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".DetailActivity">
+    tools:context=".ui.animals.DetailActivity">
 
     <ImageView
         android:id="@+id/animal_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="325dp"
         android:src="@drawable/cat"
         android:adjustViewBounds="true"
         android:contentDescription="@string/animal_image"
-        android:layout_margin="10dp"/>
+        android:scaleType="centerCrop"/>
 
     <TextView
         android:id="@+id/animal_name"

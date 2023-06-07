@@ -3,8 +3,6 @@ package com.apm.petmate.ui.animals
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.apm.petmate.Animal
-import com.apm.petmate.CardViewHolder
 import com.apm.petmate.databinding.CardCellBinding
 
 class CardAdapter(

@@ -1,8 +1,7 @@
-package com.apm.petmate
+package com.apm.petmate.ui.animals
 
 import androidx.recyclerview.widget.RecyclerView
 import com.apm.petmate.databinding.CardCellBinding
-import com.apm.petmate.ui.animals.AnimalClickListener
 
 class CardViewHolder(
     private val cardCellBinding: CardCellBinding,
