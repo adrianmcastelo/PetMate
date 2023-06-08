@@ -23,10 +23,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.floatingActionButton.setOnClickListener {
+        /*binding.floatingActionButton.setOnClickListener {
             val intent = Intent(this, CreateAnimalActivity::class.java).apply {  }
             startActivity(intent)
-        }
+        }*/
 
         val navView: BottomNavigationView = binding.navView
 

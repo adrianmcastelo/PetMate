@@ -18,6 +18,8 @@ class AnimalsFragment : Fragment(), AnimalClickListener {
     // onDestroyView.
     private lateinit var binding: FragmentAnimalsBinding
 
+    private val protectora: Boolean = true
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,6 +38,17 @@ class AnimalsFragment : Fragment(), AnimalClickListener {
             layoutManager = GridLayoutManager(context, 2)
             adapter = CardAdapter(animalList, animalFragment)
         }
+
+        if (protectora) {
+
+            binding.addButton.visibility = View.VISIBLE;
+
+            binding.addButton.setOnClickListener{
+                var intent = Intent(context, CreateAnimalActivity::class.java)
+                startActivity(intent);
+            }
+        }
+
 
         return root
     }
