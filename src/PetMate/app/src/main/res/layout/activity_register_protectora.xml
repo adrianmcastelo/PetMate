@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".authentication.RegisterProtectora">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="80dp"
+            android:paddingRight="80dp">
+
+            <EditText
+                android:id="@+id/RegisterProtectoraNombre"
+                android:layout_width="256dp"
+                android:layout_height="57dp"
+                android:layout_marginTop="40dip"
+                android:fontFamily="sans-serif-condensed"
+                android:hint="Nombre"
+                android:inputType="text" />
+            <EditText
+                android:id="@+id/RegisterProtectoraDireccion"
+                android:layout_width="256dp"
+                android:layout_height="57dp"
+                android:fontFamily="sans-serif-condensed"
+                android:layout_marginTop="60dip"
+                android:hint="Direccion"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/RegisterProtectoraUbicacion"
+                android:layout_width="256dp"
+                android:layout_height="57dp"
+                android:fontFamily="sans-serif-condensed"
+                android:layout_marginTop="50dip"
+                android:hint="Telefono"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/RegisterProtectoraTelefono"
+                android:layout_width="256dp"
+                android:layout_height="57dp"
+                android:layout_marginTop="50dip"
+                android:fontFamily="sans-serif-condensed"
+                android:hint="Ubicación"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/RegisterProtectoraURL"
+                android:layout_width="256dp"
+                android:layout_height="57dp"
+                android:fontFamily="sans-serif-condensed"
+                android:layout_marginTop="50dip"
+                android:hint="URL"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/RegisterProtectoraCorreo"
+                android:layout_width="256dp"
+                android:layout_height="57dp"
+                android:fontFamily="sans-serif-condensed"
+                android:layout_marginTop="50dip"
+                android:hint="Correo"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/RegisterProtectoraDescripcion"
+                android:layout_width="256dp"
+                android:layout_height="57dp"
+                android:layout_marginTop="50dip"
+                android:fontFamily="sans-serif-condensed"
+                android:hint="Descripcion"
+                android:inputType="text" />
+
+            <Button
+                android:id="@+id/RegisterProtectoraButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dip"
+                android:layout_marginBottom="50dip"
+                android:fontFamily="sans-serif-condensed"
+                android:text="Registrarse como Protectora" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
