@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.animals.DetailActivity">
+
+    <ImageView
+        android:id="@+id/animal_image"
+        android:layout_width="fill_parent"
+        android:layout_height="325dp"
+        android:src="@drawable/cat"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/animal_image"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:id="@+id/animal_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/animal_name"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:lines="2"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/animal_age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/animal_age"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:lines="1"
+        android:layout_marginBottom="4dp"/>
+
+</LinearLayout>

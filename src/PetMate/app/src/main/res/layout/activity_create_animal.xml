@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".ui.animals.CreateAnimalActivity">
+
+<ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.503"
+    app:layout_constraintVertical_bias="0.0"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/animal_image"
+            android:layout_width="fill_parent"
+            android:layout_height="325dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/animal_image"
+            android:scaleType="centerCrop"
+            android:background="@drawable/baseline_image_24"/>
+
+        <EditText
+            android:id="@+id/animal_name"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_marginHorizontal="20dip"
+            android:hint="Nombre"
+            android:textStyle="bold"
+            android:textSize="24dp"
+            android:inputType="text"/>
+
+        <EditText
+            android:id="@+id/animal_description"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginHorizontal="20dip"
+            android:hint="Descripción"
+            android:inputType="textMultiLine"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dip"
+            android:textSize="18dp"
+            android:text="Fecha de nacimiento"
+            android:layout_marginTop="12dp"/>
+
+        <DatePicker
+            android:id="@+id/animal_born_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:datePickerMode="spinner"
+            android:calendarViewShown="false"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dip"
+            android:textSize="18dp"
+            android:text="Edad"
+            android:layout_marginTop="12dp"/>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/age_chipGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginHorizontal="24dip"
+            app:chipSpacingHorizontal="16dp"
+            app:singleLine="true"
+            app:singleSelection="true"
+            app:selectionRequired="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/age_young"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="JOVEN" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/age_adult"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ADULTO"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/age_elder"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ANCIANO"/>
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dip"
+            android:textSize="18dp"
+            android:text="Especie"
+            android:layout_marginTop="12dp"/>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/type_chipGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginHorizontal="24dip"
+            app:chipSpacingHorizontal="16dp"
+            app:singleLine="true"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/type_dog"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PERRO"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/type_cat"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GATO"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/type_other"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OTRO"/>
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dip"
+            android:textSize="18dp"
+            android:text="Estado"
+            android:layout_marginTop="12dp"/>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/estado_chipGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginHorizontal="24dip"
+            app:chipSpacingHorizontal="16dp"
+            app:singleLine="true"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/estado_to_adopt"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EN ADOPCIÓN"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/estado_adopted"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ADOPTADO"/>
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <Button
+            android:id="@+id/add_animal_button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="26dip"
+            android:layout_marginTop="12dip"
+            android:text="Añadir" />
+
+    </LinearLayout>
+</ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
