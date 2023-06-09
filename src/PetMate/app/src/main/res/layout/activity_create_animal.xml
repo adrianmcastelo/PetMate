@@ -79,25 +79,26 @@ tools:context=".ui.animals.CreateAnimalActivity">
             android:layout_marginHorizontal="24dip"
             app:chipSpacingHorizontal="16dp"
             app:singleLine="true"
-            app:singleSelection="true">
+            app:singleSelection="true"
+            app:selectionRequired="true">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/age_young"
-                style="@style/Widget.MaterialComponents.Chip.Entry"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="JOVEN"/>
+                android:text="JOVEN" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/age_adult"
-                style="@style/Widget.MaterialComponents.Chip.Entry"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ADULTO"/>
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/age_elder"
-                style="@style/Widget.MaterialComponents.Chip.Entry"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ANCIANO"/>
@@ -124,21 +125,21 @@ tools:context=".ui.animals.CreateAnimalActivity">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/type_dog"
-                style="@style/Widget.MaterialComponents.Chip.Entry"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PERRO"/>
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/type_cat"
-                style="@style/Widget.MaterialComponents.Chip.Entry"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="GATO"/>
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/type_other"
-                style="@style/Widget.MaterialComponents.Chip.Entry"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="OTRO"/>
@@ -165,14 +166,14 @@ tools:context=".ui.animals.CreateAnimalActivity">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/estado_to_adopt"
-                style="@style/Widget.MaterialComponents.Chip.Entry"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="EN ADOPCIÓN"/>
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/estado_adopted"
-                style="@style/Widget.MaterialComponents.Chip.Entry"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ADOPTADO"/>

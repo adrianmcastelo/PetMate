@@ -9,16 +9,11 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
+import android.util.Base64
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.WindowCompat
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import com.apm.petmate.R
+import androidx.core.graphics.drawable.toBitmap
 import com.apm.petmate.databinding.ActivityCreateAnimalBinding
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
@@ -28,6 +23,7 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.single.PermissionListener
+import java.io.ByteArrayOutputStream
 
 class CreateAnimalActivity : AppCompatActivity() {
 
@@ -54,6 +50,24 @@ class CreateAnimalActivity : AppCompatActivity() {
             }
             pictureDialog.show()
         }
+
+        binding.addAnimalButton.setOnClickListener {
+            /*var animalImage = getStringImage(binding.animalImage.drawable.toBitmap())
+            var nombre = binding.animalName.text.toString()
+            var descripcion = binding.animalDescription.text.toString()
+            var fechaNacimiento = binding.animalBornDate.year.toString() + binding.animalBornDate.month.toString() + binding.animalBornDate.dayOfMonth.toString()
+            println(fechaNacimiento)*/
+            var ageChip = binding.ageChipGroup
+            val id = ageChip.checkedChipId
+            println(id)
+        }
+    }
+
+    fun getStringImage(bmp: Bitmap): String? {
+        val baos = ByteArrayOutputStream()
+        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val imageBytes = baos.toByteArray()
+        return "data:image/jpeg;base64," + Base64.encodeToString(imageBytes, Base64.DEFAULT)
     }
 
     private fun galleryCheckPermission() {

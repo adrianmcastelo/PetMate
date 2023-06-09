@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import com.apm.petmate.MainActivity
 import com.apm.petmate.R
 import com.apm.petmate.databinding.FragmentAnimalsBinding
 
@@ -17,8 +19,6 @@ class AnimalsFragment : Fragment(), AnimalClickListener {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private lateinit var binding: FragmentAnimalsBinding
-
-    private val protectora: Boolean = true
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,7 +39,10 @@ class AnimalsFragment : Fragment(), AnimalClickListener {
             adapter = CardAdapter(animalList, animalFragment)
         }
 
-        if (protectora) {
+
+        var id = (activity as? MainActivity)?.getId()
+        println(id + "animals_fragment")
+        if (id === null) {
 
             binding.addButton.visibility = View.VISIBLE;
 
@@ -47,6 +50,15 @@ class AnimalsFragment : Fragment(), AnimalClickListener {
                 var intent = Intent(context, CreateAnimalActivity::class.java)
                 startActivity(intent);
             }
+        } else {
+
+            val scale = requireContext().resources.displayMetrics.density
+
+            val lp: LinearLayout.LayoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+            lp.topMargin = (10 * scale + 0.5f).toInt()
+            lp.leftMargin = (10 * scale + 0.5f).toInt()
+            lp.rightMargin = (10 * scale + 0.5f).toInt()
+            binding.filterButton.layoutParams = lp
         }
 
 
