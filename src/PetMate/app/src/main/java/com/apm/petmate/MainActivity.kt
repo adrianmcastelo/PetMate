@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         this.token = this.intent.extras?.getString("token")
-        this.id = this.intent.extras?.getString("IdProtectora")
+        this.id = this.intent.extras?.getString("id")
         println(id + " mainactivity")
         println(token + " mainactivity")
 

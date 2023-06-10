@@ -43,16 +43,39 @@ class Login : AppCompatActivity() {
         val request = JsonObjectRequest(
             Request.Method.POST,url, jsonO,
             { response ->
-                println("La respuesta es : $response")
+                var token = JSONObject(response.toString()).getString("token")
+                getUserInfo(username, token)
+            },
+            { error -> error.printStackTrace() }
+        )
+        VolleyApi.getInstance(this).addToRequestQueue(request)
+    }
+
+    fun getUserInfo(username: String, token: String) {
+        val url = "http://10.0.2.2:8000/petmate/protectora/info?username=$username"
+
+        val request = object: JsonObjectRequest(
+            Request.Method.GET, url, null,
+            { response ->
+
+                var id = JSONObject(response.toString()).getString("IdProtectora")
                 var token = JSONObject(response.toString()).getString("token")
                 println("token del usuario: " + token)
+                println("ID del usuario: " + id)
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("token", token)
+                intent.putExtra("id", id)
 
                 startActivity(intent)
             },
             { error -> error.printStackTrace() }
-        )
+        ){
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Authorization"] = "Token " + token
+                return headers
+            }
+        }
         VolleyApi.getInstance(this).addToRequestQueue(request)
     }
 }
