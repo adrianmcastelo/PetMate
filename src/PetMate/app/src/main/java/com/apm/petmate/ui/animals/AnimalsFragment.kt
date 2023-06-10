@@ -40,8 +40,10 @@ class AnimalsFragment : Fragment(), AnimalClickListener {
         }
 
 
-        var id = (activity as? MainActivity)?.getId()
-        println(id + "animals_fragment")
+        var id = (activity as? MainActivity)?.id
+        var token = (activity as? MainActivity)?.token
+        println(id + " animals_fragment")
+        println(token + " animals_fragment")
         if (id === null) {
 
             binding.addButton.visibility = View.VISIBLE;

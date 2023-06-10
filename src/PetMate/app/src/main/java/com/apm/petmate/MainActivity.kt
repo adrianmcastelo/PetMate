@@ -1,5 +1,6 @@
 package com.apm.petmate
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -13,19 +14,24 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private var id: String? = null
+    var id: String? = null
+        get() = field
+
+    var token:String? = null
+        get() = field
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        this.token = this.intent.extras?.getString("token")
+        this.id = this.intent.extras?.getString("IdProtectora")
+        println(id + " mainactivity")
+        println(token + " mainactivity")
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
-
-        var token = this.intent.extras?.getString("token")
-        this.id = this.intent.extras?.getString("IdProtectora")
-        println(id + "mainactivity")
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         // Passing each menu ID as a set of Ids because each
@@ -39,7 +45,4 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
-    fun getId(): String? {
-        return this.id
-    }
 }
