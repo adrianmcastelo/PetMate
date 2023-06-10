@@ -87,7 +87,7 @@ tools:context=".ui.animals.CreateAnimalActivity">
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="JOVEN" />
+                android:text="CACHORRO" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/age_adult"
@@ -101,7 +101,7 @@ tools:context=".ui.animals.CreateAnimalActivity">
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ANCIANO"/>
+                android:text="SENIOR"/>
 
         </com.google.android.material.chip.ChipGroup>
 
@@ -169,7 +169,7 @@ tools:context=".ui.animals.CreateAnimalActivity">
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="EN ADOPCIÓN"/>
+                android:text="EN ADOPCION"/>
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/estado_adopted"

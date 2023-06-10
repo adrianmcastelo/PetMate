@@ -17,16 +17,47 @@
         android:contentDescription="@string/animal_image"
         android:scaleType="centerCrop"/>
 
-    <TextView
-        android:id="@+id/animal_name"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/animal_name"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:lines="2"
-        android:textStyle="bold"/>
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/animal_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="@string/animal_name"
+            android:textColor="@color/black"
+            android:textSize="32sp"
+            android:lines="2"
+            android:textStyle="bold"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/fav_button"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            app:icon="@drawable/baseline_favorite_border_24"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/animal_age"

@@ -67,6 +67,12 @@ class CreateAnimalActivity : AppCompatActivity() {
             var ageChip = binding.ageChipGroup
             val ageChipId = ageChip.checkedChipId
             val selectedAgeChip = ageChip.findViewById<Chip>(ageChipId).text.toString()
+            var ageValue: String = ""
+            when (selectedAgeChip) {
+                "CACHORRO" -> ageValue = "CA"
+                "ADULTO" -> ageValue = "AD"
+                "SENIOR" -> ageValue = "SN"
+            }
 
             var typeChip = binding.typeChipGroup
             val typeChipId = typeChip.checkedChipId
@@ -75,11 +81,16 @@ class CreateAnimalActivity : AppCompatActivity() {
             var stateChip = binding.estadoChipGroup
             val stateChipId = stateChip.checkedChipId
             val selectedStateChip = stateChip.findViewById<Chip>(stateChipId).text.toString()
+            var stateValue: String = ""
+            when (selectedStateChip) {
+                "EN ADOPCION" -> stateValue = "DP"
+                "ADOPTADO" -> stateValue = "AD"
+            }
 
             var protectora = 7;
 
             register(animalImage, name, fechaNacimiento, descripcion, selectedTypeChip,
-                selectedAgeChip, protectora, selectedStateChip)
+                ageValue, protectora, stateValue)
         }
     }
 
@@ -93,9 +104,9 @@ class CreateAnimalActivity : AppCompatActivity() {
             .put("fechaNacimiento", fechaNacimiento)
             .put("descripcion", descripcion)
             .put("tipo", tipo)
-            .put("edad", "SN")
+            .put("edad", edad)
             .put("protectora", protectora)
-            .put("estado", "AD")
+            .put("estado", estado)
             .put("imagen", imagen)
 
         println(jsonO.toString())

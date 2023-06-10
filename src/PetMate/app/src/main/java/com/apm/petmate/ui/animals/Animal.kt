@@ -41,4 +41,8 @@ class Animal {
     var estado:String = ""
         get() = field
         set(value) { field = value }
+
+    var iconoEstado:Int = 0
+        get() = field
+        set(value) { field = value }
 }

@@ -40,22 +40,14 @@ class AnimalsFragment : Fragment(), AnimalClickListener {
         super.onCreate(savedInstanceState)
         binding = FragmentAnimalsBinding.inflate(layoutInflater)
 
-        getAnimals()
-
         val root: View = binding.root
-
-        val animalFragment = this
-        binding.recyclerView.apply {
-            layoutManager = GridLayoutManager(context, 2)
-            adapter = CardAdapter(animalList, animalFragment)
-        }
 
         var id = (activity as? MainActivity)?.id
         this.token = (activity as? MainActivity)?.token
         println("ID en ANIMALES:" + id)
         println("TOKEN en ANIMALES:" + token)
 
-        if (id !== null) {
+        if (id === null) {
             binding.addButton.visibility = View.VISIBLE;
 
             binding.addButton.setOnClickListener{
@@ -72,6 +64,8 @@ class AnimalsFragment : Fragment(), AnimalClickListener {
             binding.filterButton.layoutParams = lp
         }
 
+        getAnimals()
+
         return root
     }
 
@@ -87,12 +81,13 @@ class AnimalsFragment : Fragment(), AnimalClickListener {
     }
 
     private fun getAnimals() {
-        val url = "http://10.0.2.2:8000/petmate/animal/search?tipo=" + "&edad=" + "&estado="
+        val url = "http://10.0.2.2:8000/petmate/animal/search"
 
         val request = object: JsonObjectRequest(
             Request.Method.GET, url, null,
             { response ->
                 animalList = parseAnimals(response)
+                createRecyclerView(animalList)
             },
             { error -> error.printStackTrace() }
         ){
@@ -121,6 +116,11 @@ class AnimalsFragment : Fragment(), AnimalClickListener {
             animal.descripcion = animalJSON.getString("descripcion").toString()
             animal.fechaNacimiento = animalJSON.getString("fechaNacimiento").toString()
             animal.estado = animalJSON.getString("estado").toString()
+            if (animal.estado === "AD") {
+                animal.iconoEstado = R.drawable.animal_shelter
+            } else {
+                animal.iconoEstado = R.drawable.adopcion
+            }
 
             animals.add(animal)
         }
@@ -128,6 +128,14 @@ class AnimalsFragment : Fragment(), AnimalClickListener {
         println("Animals list:" + animals.size)
         animalList = animals
         return animals
+    }
+
+    private fun createRecyclerView(animalList: List<Animal>) {
+        val animalFragment = this
+        binding.recyclerView.apply {
+            layoutManager = GridLayoutManager(context, 2)
+            adapter = CardAdapter(com.apm.petmate.ui.animals.animalList, animalFragment)
+        }
     }
 
     private fun base64ToBitmap(image: String): Bitmap? {
