@@ -9,9 +9,9 @@ class CardViewHolder(
 ): RecyclerView.ViewHolder(cardCellBinding.root)
 {
     fun bindAnimal(animal: Animal) {
-        cardCellBinding.animalImage.setImageResource(animal.photo)
+        cardCellBinding.animalImage.setImageBitmap(animal.imagen)
         cardCellBinding.animalName.text = animal.name
-        cardCellBinding.animalAge.text = animal.age.name
+        cardCellBinding.animalAge.text = animal.age
         cardCellBinding.cardView.setOnClickListener{
             clickListener.onClick(animal)
         }

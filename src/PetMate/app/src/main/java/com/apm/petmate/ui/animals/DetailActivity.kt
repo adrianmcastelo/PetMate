@@ -17,9 +17,9 @@ class DetailActivity : AppCompatActivity() {
         val animal = animalFromId(animalId)
         if(animal != null)
         {
-            binding.animalImage.setImageResource(animal.photo)
+            binding.animalImage.setImageBitmap(animal.imagen)
             binding.animalName.text = animal.name
-            binding.animalAge.text = animal.age.name
+            binding.animalAge.text = animal.age
         }
     }
 

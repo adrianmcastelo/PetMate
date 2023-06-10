@@ -14,7 +14,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonObjectRequest
+import com.apm.petmate.MainActivity
 import com.apm.petmate.databinding.ActivityCreateAnimalBinding
+import com.apm.petmate.utils.VolleyApi
+import com.google.android.material.chip.Chip
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -23,6 +28,7 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.single.PermissionListener
+import org.json.JSONObject
 import java.io.ByteArrayOutputStream
 
 class CreateAnimalActivity : AppCompatActivity() {
@@ -30,6 +36,7 @@ class CreateAnimalActivity : AppCompatActivity() {
     private val CAMERA_REQUEST_CODE = 1
     private val GALLERY_REQUEST_CODE = 2
     private lateinit var binding: ActivityCreateAnimalBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,15 +59,68 @@ class CreateAnimalActivity : AppCompatActivity() {
         }
 
         binding.addAnimalButton.setOnClickListener {
-            /*var animalImage = getStringImage(binding.animalImage.drawable.toBitmap())
-            var nombre = binding.animalName.text.toString()
+            var animalImage = getStringImage(binding.animalImage.drawable.toBitmap())
+            var name = binding.animalName.text.toString()
             var descripcion = binding.animalDescription.text.toString()
-            var fechaNacimiento = binding.animalBornDate.year.toString() + binding.animalBornDate.month.toString() + binding.animalBornDate.dayOfMonth.toString()
-            println(fechaNacimiento)*/
+            var fechaNacimiento = binding.animalBornDate.year.toString() + '-' + binding.animalBornDate.month.toString() + '-' + binding.animalBornDate.dayOfMonth.toString()
+
             var ageChip = binding.ageChipGroup
-            val id = ageChip.checkedChipId
-            println(id)
+            val ageChipId = ageChip.checkedChipId
+            val selectedAgeChip = ageChip.findViewById<Chip>(ageChipId).text.toString()
+
+            var typeChip = binding.typeChipGroup
+            val typeChipId = typeChip.checkedChipId
+            val selectedTypeChip = typeChip.findViewById<Chip>(typeChipId).text.toString()
+
+            var stateChip = binding.estadoChipGroup
+            val stateChipId = stateChip.checkedChipId
+            val selectedStateChip = stateChip.findViewById<Chip>(stateChipId).text.toString()
+
+            var protectora = 7;
+
+            register(animalImage, name, fechaNacimiento, descripcion, selectedTypeChip,
+                selectedAgeChip, protectora, selectedStateChip)
         }
+    }
+
+    fun register(imagen: String?, name: String, fechaNacimiento: String, descripcion: String,
+                 tipo: String, edad: String, protectora: Int, estado: String) {
+
+        val url = "http://10.0.2.2:8000/petmate/animal"
+
+        val jsonO = JSONObject()
+            .put("name", name)
+            .put("fechaNacimiento", fechaNacimiento)
+            .put("descripcion", descripcion)
+            .put("tipo", tipo)
+            .put("edad", "SN")
+            .put("protectora", protectora)
+            .put("estado", "AD")
+            .put("imagen", imagen)
+
+        println(jsonO.toString())
+
+        val request = object: JsonObjectRequest(
+            Request.Method.POST,url, jsonO,
+            { response ->
+                println("La respuesta es : $response")
+                var token = JSONObject(response.toString()).getString("token")
+                var id = JSONObject(response.toString()).getString("IdProtectora")
+                println(id)
+                val intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("token", token)
+                intent.putExtra("IdProtectora", id)
+                startActivity(intent)
+            },
+            { error -> error.printStackTrace() }
+        ){
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Authorization"] = "Token c44f4a4bbe7bd9435af0ac2f74f99f72e0fbbeed"
+                return headers
+            }
+        }
+        VolleyApi.getInstance(this).addToRequestQueue(request)
     }
 
     fun getStringImage(bmp: Bitmap): String? {
