@@ -21,6 +21,7 @@ import com.apm.petmate.utils.Protectora
 import com.apm.petmate.utils.VolleyApi
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
@@ -31,13 +32,14 @@ import org.json.JSONObject
 import java.lang.reflect.Array
 import java.util.Dictionary
 
-class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener{
 
     private var _binding: FragmentMapBinding? = null
 
     private lateinit var map:GoogleMap
 
     private var protectorasList: ArrayList<Protectora> = ArrayList<Protectora>()
+        get() = field
 
     private var token:String? = null
     private val binding get() = _binding!!
@@ -69,11 +71,11 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
 
     override fun onMapReady(googlemaps: GoogleMap) {
         map = googlemaps
-        map.setOnMarkerClickListener(this)
+        map.setOnInfoWindowClickListener(this)
         getProtectoras()
     }
 
-    override fun onMarkerClick(marker: Marker): Boolean {
+    override fun onInfoWindowClick(marker: Marker) {
         println("COORD MARKER: LAT: "+ marker.position.latitude + " LONG: " + marker.position.longitude )
         for (protectora in protectorasList) {
             println("COORD PROT: LAT: "+ protectora.latitud + " LONG: " + protectora.longitud )
@@ -90,11 +92,9 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
                 intent.putExtra("imagen", protectora.imagen)
                 println("ID PROT: " + protectora.id)
                 startActivity(intent)
-                return true
             }
         }
         println("Protevtora no click")
-        return false
     }
 
     private fun createMarkers(protectoras: ArrayList<Protectora>) {
