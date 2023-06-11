@@ -58,13 +58,15 @@ class Login : AppCompatActivity() {
             Request.Method.GET, url, null,
             { response ->
 
-                var id = JSONObject(response.toString()).getString("IdProtectora")
+                var id = JSONObject(response.toString()).getString("Id")
                 var token = JSONObject(response.toString()).getString("token")
+                var isProtectora = JSONObject(response.toString()).getBoolean("isProtectora")
                 println("token del usuario: " + token)
                 println("ID del usuario: " + id)
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("token", token)
                 intent.putExtra("id", id)
+                intent.putExtra("isProtectora", isProtectora)
 
                 startActivity(intent)
             },
