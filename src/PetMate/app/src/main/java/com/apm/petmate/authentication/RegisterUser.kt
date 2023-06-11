@@ -52,9 +52,13 @@ class RegisterUser : AppCompatActivity() {
             { response ->
                 println("La respuesta es : $response")
                 var token = JSONObject(response.toString()).getString("token")
+                var id = JSONObject(response.toString()).getString("Id")
+                var isProtectora = JSONObject(response.toString()).getBoolean("isProtectora")
                 println("token del usuario: " + token)
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("token", token)
+                intent.putExtra("id", id)
+                intent.putExtra("isProtectora", isProtectora)
                 startActivity(intent)
             },
             { error -> error.printStackTrace() }

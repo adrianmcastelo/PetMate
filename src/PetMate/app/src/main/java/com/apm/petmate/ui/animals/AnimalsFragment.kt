@@ -33,8 +33,9 @@ class AnimalsFragment : Fragment(), AnimalClickListener {
     // onDestroyView.
     private lateinit var binding: FragmentAnimalsBinding
 
-    private var idProtectora:Int? = null
+    private var id:Int? = null
     private var token:String? = null
+    private var isProtectora:Boolean? = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,44 +47,42 @@ class AnimalsFragment : Fragment(), AnimalClickListener {
 
         val root: View = binding.root
 
-        this.idProtectora = (activity as? MainActivity)?.id
+        this.id = (activity as? MainActivity)?.id
         this.token = (activity as? MainActivity)?.token
-        println("ID en ANIMALES:" + idProtectora)
+        this.isProtectora = (activity as? MainActivity)?.isProtectora
+        println("ID en ANIMALES:" + id)
         println("TOKEN en ANIMALES:" + token)
+        println("isProtectora en ANIMALES:" + isProtectora)
 
-        when (idProtectora){
-            (0) -> {
-                binding.addButton.visibility = View.GONE
-                val scale = requireContext().resources.displayMetrics.density
+        if (isProtectora == false){
+            binding.addButton.visibility = View.GONE
+            val scale = requireContext().resources.displayMetrics.density
 
-                val lp: LinearLayout.LayoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-                lp.topMargin = (10 * scale + 0.5f).toInt()
-                lp.leftMargin = (10 * scale + 0.5f).toInt()
-                lp.rightMargin = (10 * scale + 0.5f).toInt()
-                binding.filterButton.layoutParams = lp
+            val lp: LinearLayout.LayoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+            lp.topMargin = (10 * scale + 0.5f).toInt()
+            lp.leftMargin = (10 * scale + 0.5f).toInt()
+            lp.rightMargin = (10 * scale + 0.5f).toInt()
+            binding.filterButton.layoutParams = lp
 
-                getAnimals("", "", "")
-            }
-            else -> {
-                binding.addButton.visibility = View.VISIBLE;
+            getAnimals("", "", "", this.id)
+        } else {
+            binding.addButton.visibility = View.VISIBLE;
 
-                binding.addButton.setOnClickListener{
-                    var intent = Intent(context, CreateAnimalActivity::class.java)
-                    intent.putExtra("idProtectora", this.idProtectora)
-                    intent.putExtra("token", this.token)
-                    startActivity(intent);
-                }
-
-                //TODO cambiar la peticion por una que devuelva solo los animales de esa protectora
-                getAnimals("", "", "")
+            binding.addButton.setOnClickListener{
+                var intent = Intent(context, CreateAnimalActivity::class.java)
+                intent.putExtra("id", this.id)
+                intent.putExtra("token", this.token)
+                intent.putExtra("isProtectora", this.isProtectora)
+                startActivity(intent);
             }
 
+            getAnimals("", "", "", this.id)
         }
 
         binding.filterButton.setOnClickListener {
             FilterDialog(
                 onSubmitClickListener = { type, age, state ->
-                    getAnimals(type, age, state)
+                    getAnimals(type, age, state, this.id)
                     println(type + ", " + age + ", " + state)
                     Toast.makeText(requireContext(), "Filtras aplicados", Toast.LENGTH_SHORT).show()
                 }
@@ -101,13 +100,14 @@ class AnimalsFragment : Fragment(), AnimalClickListener {
     override fun onClick(animal: Animal) {
         val intent = Intent(context, DetailActivity::class.java)
         intent.putExtra(ANIMAL_ID_EXTRA, animal.id)
-        intent.putExtra("idProtectora", this.idProtectora)
+        intent.putExtra("id", this.id)
         intent.putExtra("token", this.token)
+        intent.putExtra("isProtectora", this.isProtectora)
         startActivity(intent)
     }
 
-    private fun getAnimals(type: String, age: String, state: String) {
-        val url = setUrl(type, age, state)
+    private fun getAnimals(type: String, age: String, state: String, idProtectora: Int?) {
+        val url = setUrl(type, age, state, idProtectora)
         val request = object: JsonObjectRequest(
             Request.Method.GET, url, null,
             { response ->
@@ -125,7 +125,7 @@ class AnimalsFragment : Fragment(), AnimalClickListener {
         VolleyApi.getInstance(getActivity() as Activity).addToRequestQueue(request)
     }
 
-    private fun setUrl(type: String, age: String, state: String): String {
+    private fun setUrl(type: String, age: String, state: String, idProtectora: Int?): String {
         var url = "http://10.0.2.2:8000/petmate/animal/search?"
 
         when (type) {
@@ -142,6 +142,10 @@ class AnimalsFragment : Fragment(), AnimalClickListener {
             null -> { }
             "" -> { }
             else -> url = url + "&estado=" + state
+        }
+        if (this.isProtectora == true) {
+            println("hay protectora" + idProtectora)
+            url = url + "&protectora_id=" + idProtectora
         }
         println("URL FILTRADO: " + url)
         return url

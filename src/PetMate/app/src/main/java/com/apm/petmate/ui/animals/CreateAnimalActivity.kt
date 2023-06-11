@@ -37,16 +37,18 @@ class CreateAnimalActivity : AppCompatActivity() {
     private val GALLERY_REQUEST_CODE = 2
     private lateinit var binding: ActivityCreateAnimalBinding
 
-    private var idProtectora:Int? = null
+    private var id:Int? = null
     private var token:String? = null
+    private var isProtectora:Boolean? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCreateAnimalBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        this.idProtectora = this.intent.extras?.getInt("idProtectora")
+        this.id = this.intent.extras?.getInt("id")
         this.token = this.intent.extras?.getString("token")
+        this.isProtectora = this.intent.extras?.getBoolean("isProtectora")
 
         binding.animalImage.setOnClickListener{
             val pictureDialog = AlertDialog.Builder(this)
@@ -92,7 +94,7 @@ class CreateAnimalActivity : AppCompatActivity() {
                 "ADOPTADO" -> stateValue = "AD"
             }
 
-            println("Creacion de animal coge el id: " + this.idProtectora)
+            println("Creacion de animal coge el id: " + this.id)
             println("Creacion de animal coge el token: " + token)
 
             register(animalImage, name, fechaNacimiento, descripcion, selectedTypeChip,
@@ -111,7 +113,7 @@ class CreateAnimalActivity : AppCompatActivity() {
             .put("descripcion", descripcion)
             .put("tipo", tipo)
             .put("edad", edad)
-            .put("protectora", this.idProtectora)
+            .put("protectora", this.id)
             .put("estado", estado)
             .put("imagen", imagen)
 
@@ -122,8 +124,9 @@ class CreateAnimalActivity : AppCompatActivity() {
             { response ->
                 println("La respuesta es : $response")
                 val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("id", this.idProtectora)
+                intent.putExtra("id", this.id)
                 intent.putExtra("token", this.token)
+                intent.putExtra("isProtectora", this.isProtectora)
                 startActivity(intent)
             },
             { error -> error.printStackTrace() }
