@@ -2,6 +2,7 @@ package com.apm.petmate.ui.animals
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.apm.petmate.MainActivity
 import com.apm.petmate.R
 import com.apm.petmate.databinding.ActivityDetailBinding
 
@@ -9,16 +10,21 @@ class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
 
-    private var idProtectora:Int? = null
+    private var id:Int? = null
     private var token:String? = null
+    private var isProtectora:Boolean? = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        this.idProtectora = this.intent.extras?.getInt("idProtectora")
+        this.id = this.intent.extras?.getInt("id")
         this.token = this.intent.extras?.getString("token")
+        this.isProtectora = this.intent.extras?.getBoolean("isProtectora")
+        println("ID en DETALLE ANIMAL:" + id)
+        println("TOKEN en DETALLE ANIMAL:" + token)
+        println("isProtectora en DETALLE ANIMAL:" + isProtectora)
 
         val animalId = intent.getIntExtra(ANIMAL_ID_EXTRA, -1)
         val animal = animalFromId(animalId)
@@ -46,30 +52,24 @@ class DetailActivity : AppCompatActivity() {
             binding.animalBornDate.text = animal.fechaNacimiento
         }
 
-        when (idProtectora){
-            (0) -> {
+        if (isProtectora == false){
                 binding.button.setIconResource(R.drawable.baseline_favorite_border_24)
-            }
-            else -> {
-                when (animal?.estado) {
-                    "AD" -> {
-                        binding.button.setIconResource(R.drawable.adopcion)
-                    }
-                    "DP" -> {
-                        binding.button.setIconResource(R.drawable.animal_shelter)
-                    }
+        } else {
+            when (animal?.estado) {
+                "AD" -> {
+                    binding.button.setIconResource(R.drawable.adopcion)
+                }
+                "DP" -> {
+                    binding.button.setIconResource(R.drawable.animal_shelter)
                 }
             }
         }
 
         binding.button.setOnClickListener {
-            when (idProtectora){
-                (0) -> {
-                    //TODO hacer favorito o no
-                }
-                else -> {
-                    //TODO poner a adoptado o en adopción
-                }
+            if (isProtectora == false) {
+                //TODO hacer favorito o no
+            } else {
+                //TODO poner a adoptado o en adopción
             }
         }
     }
