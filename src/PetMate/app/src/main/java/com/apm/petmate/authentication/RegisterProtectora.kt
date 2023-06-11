@@ -22,6 +22,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.apm.petmate.MainActivity
 import com.apm.petmate.R
 import com.apm.petmate.utils.VolleyApi
+import com.google.android.gms.maps.model.Marker
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -62,6 +63,12 @@ class RegisterProtectora : AppCompatActivity() {
         }
 
         var btnReister = findViewById<Button>(R.id.RegisterProtectoraButton)
+        var btnMap = findViewById<Button>(R.id.RegisterProtectoraButtonMap)
+
+        btnMap.setOnClickListener{
+            val intent = Intent(this, RegisterProtectoraMap::class.java)
+            startActivity(intent)
+        }
 
         btnReister.setOnClickListener{
             var imagen = getStringImage(findViewById<ImageView>(R.id.RegisterProtectoraImagen).drawable.toBitmap())
@@ -74,7 +81,6 @@ class RegisterProtectora : AppCompatActivity() {
             var url = findViewById<EditText>(R.id.RegisterProtectoraURL).text.toString()
             var correo = findViewById<EditText>(R.id.RegisterProtectoraCorreo).text.toString()
             var descripcion = findViewById<EditText>(R.id.RegisterProtectoraDescripcion).text.toString()
-
             register(imagen!!, user!!, pass!!, nombre, dir, ubi, tlf, url, correo, descripcion)
         }
     }
@@ -102,8 +108,12 @@ class RegisterProtectora : AppCompatActivity() {
             .put("descripcion", descripcion)
             .put("telefono", telefono)
             .put("imagen", imagen)
+            .put("longitud", marker?.position?.longitude)
+            .put("latitud", marker?.position?.latitude)
 
         println(jsonO.toString())
+        println("LONG" + marker?.position?.longitude)
+        println("LAT" + marker?.position?.latitude)
 
         val request = JsonObjectRequest(
             Request.Method.POST,url, jsonO,
@@ -112,7 +122,6 @@ class RegisterProtectora : AppCompatActivity() {
                 var token = JSONObject(response.toString()).getString("token")
                 var id = JSONObject(response.toString()).getInt("Id")
                 var isProtectora = JSONObject(response.toString()).getBoolean("isProtectora")
-                println(id)
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("token", token)
                 intent.putExtra("id", id)
@@ -224,5 +233,10 @@ class RegisterProtectora : AppCompatActivity() {
             .setNegativeButton("CANCELAR"){dialog, _->
                 dialog.dismiss()
             }.show()
+    }
+
+    companion object {
+        var marker: Marker? = null
+            set(value) { field = value }
     }
 }

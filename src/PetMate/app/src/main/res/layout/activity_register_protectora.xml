@@ -93,6 +93,21 @@
                 android:layout_marginTop="12dip"
                 android:hint="Descripcion"
                 android:inputType="text" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/RegisterProtectoraButtonMap"
+                    android:layout_width="250dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:layout_marginHorizontal="26dip"
+                    android:layout_marginTop="12dip"
+                    android:text="Seleccionar ubicacion" />
+
+            </LinearLayout>
 
             <Button
                 android:id="@+id/RegisterProtectoraButton"

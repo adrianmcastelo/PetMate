@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    var id: String? = null
+    var id: Int? = null
         get() = field
 
     var token:String? = null
@@ -38,9 +38,9 @@ class MainActivity : AppCompatActivity() {
         getProtectoras()
 
         this.token = this.intent.extras?.getString("token")
-        this.id = this.intent.extras?.getString("id")
+        this.id = this.intent.extras?.getInt("id")
         this.isProtectora = this.intent.extras?.getBoolean("isProtectora")
-        println(id + " mainactivity")
+        println(id.toString() + " mainactivity")
         println(token + " mainactivity")
         println(isProtectora.toString() + " mainactivity")
 

@@ -58,7 +58,7 @@ class Login : AppCompatActivity() {
             Request.Method.GET, url, null,
             { response ->
 
-                var id = JSONObject(response.toString()).getString("Id")
+                var id = JSONObject(response.toString()).getInt("Id")
                 var token = JSONObject(response.toString()).getString("token")
                 var isProtectora = JSONObject(response.toString()).getBoolean("isProtectora")
                 println("token del usuario: " + token)

@@ -37,7 +37,6 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnInfoWindowClickL
     private var _binding: FragmentMapBinding? = null
 
     private lateinit var map:GoogleMap
-
     private var protectorasList: ArrayList<Protectora> = ArrayList<Protectora>()
         get() = field
 
