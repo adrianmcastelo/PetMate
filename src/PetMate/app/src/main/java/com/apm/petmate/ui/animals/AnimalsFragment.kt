@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.volley.Request
@@ -17,9 +18,11 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.apm.petmate.MainActivity
 import com.apm.petmate.R
 import com.apm.petmate.databinding.FragmentAnimalsBinding
+import com.apm.petmate.utils.FilterDialog
 import com.apm.petmate.utils.Protectora
 import com.apm.petmate.utils.VolleyApi
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.material.chip.Chip
 import org.json.JSONObject
 
 class AnimalsFragment : Fragment(), AnimalClickListener {
@@ -59,7 +62,7 @@ class AnimalsFragment : Fragment(), AnimalClickListener {
                 lp.rightMargin = (10 * scale + 0.5f).toInt()
                 binding.filterButton.layoutParams = lp
 
-                getAnimals()
+                getAnimals("", "", "")
             }
             else -> {
                 binding.addButton.visibility = View.VISIBLE;
@@ -72,9 +75,19 @@ class AnimalsFragment : Fragment(), AnimalClickListener {
                 }
 
                 //TODO cambiar la peticion por una que devuelva solo los animales de esa protectora
-                getAnimals()
+                getAnimals("", "", "")
             }
 
+        }
+
+        binding.filterButton.setOnClickListener {
+            FilterDialog(
+                onSubmitClickListener = { type, age, state ->
+                    getAnimals(type, age, state)
+                    println(type + ", " + age + ", " + state)
+                    Toast.makeText(requireContext(), "Filtras aplicados", Toast.LENGTH_SHORT).show()
+                }
+            ).show(parentFragmentManager, "dialog")
         }
 
         return root
@@ -93,9 +106,8 @@ class AnimalsFragment : Fragment(), AnimalClickListener {
         startActivity(intent)
     }
 
-    private fun getAnimals() {
-        val url = "http://10.0.2.2:8000/petmate/animal/search"
-
+    private fun getAnimals(type: String, age: String, state: String) {
+        val url = setUrl(type, age, state)
         val request = object: JsonObjectRequest(
             Request.Method.GET, url, null,
             { response ->
@@ -111,6 +123,28 @@ class AnimalsFragment : Fragment(), AnimalClickListener {
             }
         }
         VolleyApi.getInstance(getActivity() as Activity).addToRequestQueue(request)
+    }
+
+    private fun setUrl(type: String, age: String, state: String): String {
+        var url = "http://10.0.2.2:8000/petmate/animal/search?"
+
+        when (type) {
+            null -> { }
+            "" -> { }
+            else -> url = url + "&tipo=" + type
+        }
+        when (age) {
+            null -> { }
+            "" -> { }
+            else -> url = url + "&edad=" + age
+        }
+        when (state) {
+            null -> { }
+            "" -> { }
+            else -> url = url + "&estado=" + state
+        }
+        println("URL FILTRADO: " + url)
+        return url
     }
 
     private fun parseAnimals(response: JSONObject):ArrayList<Animal> {
