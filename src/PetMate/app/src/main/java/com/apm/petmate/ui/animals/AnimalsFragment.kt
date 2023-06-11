@@ -167,6 +167,11 @@ class AnimalsFragment : Fragment(), AnimalClickListener {
                 "AD" -> animal.iconoEstado = R.drawable.animal_shelter
                 "DP" -> animal.iconoEstado = R.drawable.adopcion
             }
+            when (animal.age) {
+                "CA" -> animal.translateAge = "Cachorro"
+                "AD" -> animal.translateAge = "Adulto"
+                "SN" -> animal.translateAge = "Senior"
+            }
 
             animals.add(animal)
         }

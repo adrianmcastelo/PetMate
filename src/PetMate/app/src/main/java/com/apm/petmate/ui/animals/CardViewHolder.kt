@@ -11,7 +11,7 @@ class CardViewHolder(
     fun bindAnimal(animal: Animal) {
         cardCellBinding.animalImage.setImageBitmap(animal.imagen)
         cardCellBinding.animalName.text = animal.name
-        cardCellBinding.animalAge.text = animal.age
+        cardCellBinding.animalAge.text = animal.translateAge
         cardCellBinding.iconAdopted.setImageResource(animal.iconoEstado)
         cardCellBinding.cardView.setOnClickListener{
             clickListener.onClick(animal)

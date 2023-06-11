@@ -22,6 +22,10 @@ class Animal {
         get() = field
         set(value) { field = value }
 
+    var translateAge:String = ""
+        get() = field
+        set(value) { field = value }
+
     var type:String = ""
         get() = field
         set(value) { field = value }
