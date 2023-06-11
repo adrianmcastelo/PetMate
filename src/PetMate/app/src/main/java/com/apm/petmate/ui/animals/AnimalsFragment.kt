@@ -30,6 +30,7 @@ class AnimalsFragment : Fragment(), AnimalClickListener {
     // onDestroyView.
     private lateinit var binding: FragmentAnimalsBinding
 
+    private var idProtectora:Int? = null
     private var token:String? = null
 
     override fun onCreateView(
@@ -42,29 +43,39 @@ class AnimalsFragment : Fragment(), AnimalClickListener {
 
         val root: View = binding.root
 
-        var id = (activity as? MainActivity)?.id
+        this.idProtectora = (activity as? MainActivity)?.id
         this.token = (activity as? MainActivity)?.token
-        println("ID en ANIMALES:" + id)
+        println("ID en ANIMALES:" + idProtectora)
         println("TOKEN en ANIMALES:" + token)
 
-        if (id === null) {
-            binding.addButton.visibility = View.VISIBLE;
+        when (idProtectora){
+            (0) -> {
+                binding.addButton.visibility = View.GONE
+                val scale = requireContext().resources.displayMetrics.density
 
-            binding.addButton.setOnClickListener{
-                var intent = Intent(context, CreateAnimalActivity::class.java)
-                startActivity(intent);
+                val lp: LinearLayout.LayoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                lp.topMargin = (10 * scale + 0.5f).toInt()
+                lp.leftMargin = (10 * scale + 0.5f).toInt()
+                lp.rightMargin = (10 * scale + 0.5f).toInt()
+                binding.filterButton.layoutParams = lp
+
+                getAnimals()
             }
-        } else {
-            val scale = requireContext().resources.displayMetrics.density
+            else -> {
+                binding.addButton.visibility = View.VISIBLE;
 
-            val lp: LinearLayout.LayoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-            lp.topMargin = (10 * scale + 0.5f).toInt()
-            lp.leftMargin = (10 * scale + 0.5f).toInt()
-            lp.rightMargin = (10 * scale + 0.5f).toInt()
-            binding.filterButton.layoutParams = lp
+                binding.addButton.setOnClickListener{
+                    var intent = Intent(context, CreateAnimalActivity::class.java)
+                    intent.putExtra("idProtectora", this.idProtectora)
+                    intent.putExtra("token", this.token)
+                    startActivity(intent);
+                }
+
+                //TODO cambiar la peticion por una que devuelva solo los animales de esa protectora
+                getAnimals()
+            }
+
         }
-
-        getAnimals()
 
         return root
     }
@@ -77,6 +88,8 @@ class AnimalsFragment : Fragment(), AnimalClickListener {
     override fun onClick(animal: Animal) {
         val intent = Intent(context, DetailActivity::class.java)
         intent.putExtra(ANIMAL_ID_EXTRA, animal.id)
+        intent.putExtra("idProtectora", this.idProtectora)
+        intent.putExtra("token", this.token)
         startActivity(intent)
     }
 
@@ -116,10 +129,9 @@ class AnimalsFragment : Fragment(), AnimalClickListener {
             animal.descripcion = animalJSON.getString("descripcion").toString()
             animal.fechaNacimiento = animalJSON.getString("fechaNacimiento").toString()
             animal.estado = animalJSON.getString("estado").toString()
-            if (animal.estado === "AD") {
-                animal.iconoEstado = R.drawable.animal_shelter
-            } else {
-                animal.iconoEstado = R.drawable.adopcion
+            when (animal.estado) {
+                "AD" -> animal.iconoEstado = R.drawable.animal_shelter
+                "DP" -> animal.iconoEstado = R.drawable.adopcion
             }
 
             animals.add(animal)

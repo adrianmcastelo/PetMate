@@ -37,11 +37,16 @@ class CreateAnimalActivity : AppCompatActivity() {
     private val GALLERY_REQUEST_CODE = 2
     private lateinit var binding: ActivityCreateAnimalBinding
 
+    private var idProtectora:Int? = null
+    private var token:String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCreateAnimalBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        this.idProtectora = this.intent.extras?.getInt("idProtectora")
+        this.token = this.intent.extras?.getString("token")
 
         binding.animalImage.setOnClickListener{
             val pictureDialog = AlertDialog.Builder(this)
@@ -87,15 +92,16 @@ class CreateAnimalActivity : AppCompatActivity() {
                 "ADOPTADO" -> stateValue = "AD"
             }
 
-            var protectora = 7;
+            println("Creacion de animal coge el id: " + this.idProtectora)
+            println("Creacion de animal coge el token: " + token)
 
             register(animalImage, name, fechaNacimiento, descripcion, selectedTypeChip,
-                ageValue, protectora, stateValue)
+                ageValue, stateValue)
         }
     }
 
     fun register(imagen: String?, name: String, fechaNacimiento: String, descripcion: String,
-                 tipo: String, edad: String, protectora: Int, estado: String) {
+                 tipo: String, edad: String, estado: String) {
 
         val url = "http://10.0.2.2:8000/petmate/animal"
 
@@ -105,7 +111,7 @@ class CreateAnimalActivity : AppCompatActivity() {
             .put("descripcion", descripcion)
             .put("tipo", tipo)
             .put("edad", edad)
-            .put("protectora", protectora)
+            .put("protectora", this.idProtectora)
             .put("estado", estado)
             .put("imagen", imagen)
 
@@ -115,19 +121,16 @@ class CreateAnimalActivity : AppCompatActivity() {
             Request.Method.POST,url, jsonO,
             { response ->
                 println("La respuesta es : $response")
-                var token = JSONObject(response.toString()).getString("token")
-                var id = JSONObject(response.toString()).getString("IdProtectora")
-                println(id)
                 val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("token", token)
-                intent.putExtra("IdProtectora", id)
+                intent.putExtra("id", this.idProtectora)
+                intent.putExtra("token", this.token)
                 startActivity(intent)
             },
             { error -> error.printStackTrace() }
         ){
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()
-                headers["Authorization"] = "Token c44f4a4bbe7bd9435af0ac2f74f99f72e0fbbeed"
+                headers["Authorization"] = "Token " + token
                 return headers
             }
         }

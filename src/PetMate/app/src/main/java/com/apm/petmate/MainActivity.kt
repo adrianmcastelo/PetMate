@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    var id: String? = null
+    var id: Int? = null
         get() = field
 
     var token:String? = null
@@ -24,9 +24,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         this.token = this.intent.extras?.getString("token")
-        this.id = this.intent.extras?.getString("id")
-        println(id + " mainactivity")
-        println(token + " mainactivity")
+        this.id = this.intent.extras?.getInt("id")
+        println("IDProtectora en MainActivity: " + id)
+        println("Token en MainActivity: " + token)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
