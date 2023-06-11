@@ -40,9 +40,9 @@ class MainActivity : AppCompatActivity() {
         this.token = this.intent.extras?.getString("token")
         this.id = this.intent.extras?.getInt("id")
         this.isProtectora = this.intent.extras?.getBoolean("isProtectora")
-        println(id.toString() + " mainactivity")
-        println(token + " mainactivity")
-        println(isProtectora.toString() + " mainactivity")
+        println("ID en MainActivity: " + id)
+        println("Token en MainActivity: " + token)
+        println("isProtectora en MainActivity: " + isProtectora.toString())
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
