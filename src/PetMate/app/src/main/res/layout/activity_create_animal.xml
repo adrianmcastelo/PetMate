@@ -182,12 +182,12 @@ tools:context=".ui.animals.CreateAnimalActivity">
 
         <Switch
             android:id="@+id/SwitchCreateAnimal"
-            android:layout_width="wrap_content"
-            android:layout_height="56dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="26dip"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="12dp"
             android:textSize="18dp"
-            android:text="Publicar en Twitter         " />
+            android:text="Publicar en Twitter" />
 
         <Button
             android:id="@+id/add_animal_button"
