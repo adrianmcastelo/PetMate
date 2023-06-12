@@ -1,183 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.animals.DetailActivity"
-    android:showDividers="middle">
+    tools:context=".ui.animals.DetailActivity">
 
-    <ImageView
-        android:id="@+id/animal_image"
+    <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="325dp"
-        android:src="@drawable/cat"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/animal_image"
-        android:scaleType="centerCrop"/>
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_height="fill_parent"
+        android:fillViewport="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintVertical_bias="0.0"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_gravity="center_vertical">
-
-        <TextView
-            android:id="@+id/animal_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:text="@string/animal_name"
-            android:textColor="@color/black"
-            android:textSize="32sp"
-            android:lines="2"
-            android:textStyle="bold"/>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:insetLeft="0dp"
-            android:insetTop="0dp"
-            android:insetRight="0dp"
-            android:insetBottom="0dp"
-            app:iconGravity="textStart"
-            app:iconPadding="0dp"
-            app:iconSize="32dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            app:icon="@drawable/baseline_favorite_border_24"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="14dp"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="4dp">
-            <ImageView
-                android:id="@+id/icon_type"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/baseline_pets_24"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="8dp"/>
-            <TextView
-                android:id="@+id/animal_type"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Animal Type"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:lines="1" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="4dp">
-            <ImageView
-                android:id="@+id/icon_age"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/birthday"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="8dp"/>
-            <TextView
-                android:id="@+id/animal_age"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/animal_age"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:lines="1" />
-            <View
-                android:layout_width="3dp"
-                android:layout_height="3dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginHorizontal="6dp"
-                android:background="@color/black" />
-            <TextView
-                android:id="@+id/animal_born_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Animal Born Date"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:lines="1" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginHorizontal="4dp"
-            android:background="@color/black" />
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".ui.animals.DetailActivity"
+            android:showDividers="middle"
+            android:fillViewport="true">
+
             <ImageView
-                android:id="@+id/icon_state"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/adopcion"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="12dp"/>
-            <TextView
-                android:id="@+id/animal_state"
+                android:id="@+id/animal_image"
+                android:layout_width="fill_parent"
+                android:layout_height="325dp"
+                android:src="@drawable/baseline_image_24"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/animal_image"
+                android:scaleType="centerCrop"/>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/animal_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="Animal Name"
+                    android:textColor="@color/black"
+                    android:textSize="32sp"
+                    android:lines="2"
+                    android:textStyle="bold"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button"
+                    android:layout_width="52dp"
+                    android:layout_height="52dp"
+                    android:insetLeft="0dp"
+                    android:insetTop="0dp"
+                    android:insetRight="0dp"
+                    android:insetBottom="0dp"
+                    app:iconGravity="textStart"
+                    app:iconPadding="0dp"
+                    app:iconSize="32dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    app:icon="@drawable/baseline_favorite_border_24"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </RelativeLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Animal State"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:lines="1"
-                android:gravity="center_vertical"/>
+                android:layout_marginHorizontal="14dp"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp">
+                    <ImageView
+                        android:id="@+id/icon_type"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/baseline_pets_24"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="8dp"/>
+                    <TextView
+                        android:id="@+id/animal_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:lines="1" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp">
+                    <ImageView
+                        android:id="@+id/icon_age"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/birthday"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="8dp"/>
+                    <TextView
+                        android:id="@+id/animal_age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:lines="1" />
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_height="3dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginHorizontal="6dp"
+                        android:background="@color/black" />
+                    <TextView
+                        android:id="@+id/animal_born_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:lines="1" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginHorizontal="4dp"
+                    android:background="@color/black" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/icon_state"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/adopcion"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="12dp"/>
+                    <TextView
+                        android:id="@+id/animal_state"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="-"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:lines="1"
+                        android:gravity="center_vertical"/>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Acerca del animal"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:lines="1"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="2dp"/>
+
+                <TextView
+                    android:id="@+id/animal_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:lines="5"
+                    android:layout_marginLeft="2dp"/>
+
+                <Button
+                    android:id="@+id/go_to_protectora_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginHorizontal="26dip"
+                    android:layout_marginTop="12dip"
+                    android:text="Ir a protectora" />
+
+
+            </LinearLayout>
+
         </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Acerca del animal"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:lines="1"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="2dp"/>
-
-        <TextView
-            android:id="@+id/animal_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Animal Description"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:lines="10"
-            android:layout_marginLeft="2dp"/>
-
-
-    </LinearLayout>
-
-</LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

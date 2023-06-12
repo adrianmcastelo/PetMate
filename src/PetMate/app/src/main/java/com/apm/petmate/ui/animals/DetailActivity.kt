@@ -12,6 +12,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.apm.petmate.MainActivity
 import com.apm.petmate.R
 import com.apm.petmate.databinding.ActivityDetailBinding
+import com.apm.petmate.ui.map.ProtectoraDetail
 import com.apm.petmate.utils.VolleyApi
 import org.json.JSONObject
 
@@ -78,6 +79,14 @@ class DetailActivity : AppCompatActivity() {
             } else {
                 setAdoptedOrNot()
             }
+        }
+
+        binding.goToProtectoraButton.setOnClickListener {
+            val intent = Intent(this, ProtectoraDetail::class.java)
+            intent.putExtra("idProtectora", animal?.protectora)
+            intent.putExtra("token", token)
+            println("ID PROT: " + animal?.protectora)
+            startActivity(intent)
         }
     }
 
