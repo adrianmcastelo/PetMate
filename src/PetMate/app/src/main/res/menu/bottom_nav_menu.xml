@@ -16,4 +16,9 @@
         android:icon="@drawable/baseline_favorite_border_24"
         android:title="@string/title_favs" />
 
+    <item
+        android:id="@+id/navigation_protectoraDetail"
+        android:icon="@drawable/animal_shelter"
+        android:title="@string/title_protectoraDetail" />
+
 </menu>
