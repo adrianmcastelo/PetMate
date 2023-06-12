@@ -22,4 +22,11 @@
         android:name="com.apm.petmate.ui.favs.FavsFragment"
         android:label="@string/title_favs"
         tools:layout="@layout/fragment_favs" />
+
+    <fragment
+        android:id="@+id/navigation_protectoraDetail"
+        android:name="com.apm.petmate.ui.protectoraDetail.ProtectoraDetailFragment"
+        android:label="@string/title_protectoraDetail"
+        tools:layout="@layout/fragment_protectora_detail" />
+
 </navigation>

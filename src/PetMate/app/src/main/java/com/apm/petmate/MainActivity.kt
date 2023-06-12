@@ -3,7 +3,10 @@ package com.apm.petmate
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ReportFragment.Companion.reportFragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -49,12 +52,19 @@ class MainActivity : AppCompatActivity() {
 
         val navView: BottomNavigationView = binding.navView
 
+        if (isProtectora!!) {
+            navView.menu.removeItem(R.id.navigation_map)
+            navView.menu.removeItem(R.id.navigation_favs)
+        } else {
+            navView.menu.removeItem(R.id.navigation_protectoraDetail)
+        }
+
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_map, R.id.navigation_animals, R.id.navigation_favs
+                R.id.navigation_map, R.id.navigation_animals, R.id.navigation_favs, R.id.navigation_protectoraDetail
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
