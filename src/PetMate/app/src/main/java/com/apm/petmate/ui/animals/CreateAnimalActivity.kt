@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
 import android.util.Base64
+import android.widget.Switch
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +18,7 @@ import androidx.core.graphics.drawable.toBitmap
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.apm.petmate.MainActivity
+import com.apm.petmate.R
 import com.apm.petmate.databinding.ActivityCreateAnimalBinding
 import com.apm.petmate.utils.VolleyApi
 import com.google.android.material.chip.Chip
@@ -97,13 +99,15 @@ class CreateAnimalActivity : AppCompatActivity() {
             println("Creacion de animal coge el id: " + this.id)
             println("Creacion de animal coge el token: " + token)
 
+            var switch = findViewById<Switch>(R.id.SwitchCreateAnimal)
+
             register(animalImage, name, fechaNacimiento, descripcion, selectedTypeChip,
-                ageValue, stateValue)
+                ageValue, stateValue, switch.isChecked)
         }
     }
 
     fun register(imagen: String?, name: String, fechaNacimiento: String, descripcion: String,
-                 tipo: String, edad: String, estado: String) {
+                 tipo: String, edad: String, estado: String, twitterPub: Boolean) {
 
         val url = "http://10.0.2.2:8000/petmate/animal"
 
@@ -115,6 +119,7 @@ class CreateAnimalActivity : AppCompatActivity() {
             .put("edad", edad)
             .put("protectora", this.id)
             .put("estado", estado)
+            .put("twitterPub", twitterPub)
             .put("imagen", imagen)
 
         println(jsonO.toString())
