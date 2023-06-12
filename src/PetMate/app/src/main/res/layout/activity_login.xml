@@ -6,50 +6,46 @@
     android:layout_height="match_parent"
     tools:context=".authentication.Login">
 
-    <EditText
-        android:id="@+id/editTextLoginContraseña"
-        android:layout_width="274dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="56dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:hint="Contraseña"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLoginCorreo" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
 
-    <EditText
-        android:id="@+id/editTextLoginCorreo"
-        android:layout_width="264dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="160dp"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="Nombre de usuario"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:src="@drawable/logo"/>
 
-    <Button
-        android:id="@+id/buttonLoginViewLogin"
-        android:layout_width="198dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="72dp"
-        android:text="Acceder"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLoginContraseña" />
+        <EditText
+            android:id="@+id/editTextLoginCorreo"
+            android:layout_width="260dp"
+            android:layout_height="65dp"
+            android:layout_marginTop="40dp"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="Nombre de usuario"/>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="132dp"
-        android:text="PetMate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/editTextLoginContraseña"
+            android:layout_width="260dp"
+            android:layout_height="61dp"
+            android:layout_marginTop="40dp"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:hint="Contraseña"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextLoginCorreo" />
+
+        <Button
+            android:id="@+id/buttonLoginViewLogin"
+            android:layout_width="198dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="40dp"
+            android:text="Acceder" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

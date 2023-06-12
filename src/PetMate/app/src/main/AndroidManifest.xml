@@ -33,7 +33,6 @@
         <activity
             android:name=".ui.animals.CreateAnimalActivity"
             android:exported="false"
-            android:label="@string/title_activity_create_animal"
             android:theme="@style/Theme.PetMate" />
         <activity
             android:name=".ui.animals.DetailActivity"

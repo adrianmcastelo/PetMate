@@ -8,25 +8,25 @@
     <fragment
         android:id="@+id/navigation_map"
         android:name="com.apm.petmate.ui.map.MapFragment"
-        android:label="@string/title_map"
+        android:label="PetMate"
         tools:layout="@layout/fragment_map" />
 
     <fragment
         android:id="@+id/navigation_animals"
         android:name="com.apm.petmate.ui.animals.AnimalsFragment"
-        android:label="@string/title_animals"
+        android:label="PetMate"
         tools:layout="@layout/fragment_animals" />
 
     <fragment
         android:id="@+id/navigation_favs"
         android:name="com.apm.petmate.ui.favs.FavsFragment"
-        android:label="@string/title_favs"
+        android:label="PetMate"
         tools:layout="@layout/fragment_favs" />
 
     <fragment
         android:id="@+id/navigation_protectoraDetail"
         android:name="com.apm.petmate.ui.protectoraDetail.ProtectoraDetailFragment"
-        android:label="@string/title_protectoraDetail"
+        android:label="PetMate"
         tools:layout="@layout/fragment_protectora_detail" />
 
 </navigation>
