@@ -80,14 +80,8 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnInfoWindowClickL
             if (protectora.latitud == marker.position.latitude &&
                 protectora.longitud == marker.position.longitude) {
                 val intent = Intent(context, ProtectoraDetail::class.java)
-                intent.putExtra("name", protectora.name)
-                intent.putExtra("direccion", protectora.direccion)
-                intent.putExtra("ubicacion", protectora.ubicacion)
-                intent.putExtra("telefono", protectora.telefono)
-                intent.putExtra("url", protectora.url)
-                intent.putExtra("correo", protectora.correo)
-                intent.putExtra("descripcion", protectora.descripcion)
-                intent.putExtra("imagen", protectora.imagen)
+                intent.putExtra("idProtectora", protectora.id)
+                intent.putExtra("token", token)
                 println("ID PROT: " + protectora.id)
                 startActivity(intent)
             }

@@ -96,7 +96,6 @@ class MainActivity : AppCompatActivity() {
             protectora.url = protectoraJSON.getString("url").toString()
             protectora.correo = protectoraJSON.getString("correo").toString()
             protectora.descripcion = protectoraJSON.getString("descripcion").toString()
-            protectora.imagen = protectoraJSON.getString("imagen").toString()
             protectora.longitud = protectoraJSON.getDouble("longitud")
             protectora.latitud = protectoraJSON.getDouble("latitud")
 

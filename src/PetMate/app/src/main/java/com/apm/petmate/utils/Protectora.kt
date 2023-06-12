@@ -1,5 +1,7 @@
 package com.apm.petmate.utils
 
+import android.graphics.Bitmap
+
 class Protectora {
 
     var id:Int = 0
@@ -34,7 +36,7 @@ class Protectora {
         get() = field
         set(value) { field = value }
 
-    var imagen:String = ""
+    var imagen: Bitmap? = null
         get() = field
         set(value) { field = value }
 
